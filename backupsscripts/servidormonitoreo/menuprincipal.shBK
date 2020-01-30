@@ -1,0 +1,45 @@
+
+menuprincipal () { 
+clear
+echo
+echo -e '               '"###############################################################"
+echo -e '               '"#"'                                                             '"#" 
+echo -e '               '"#"'         '------ MENU PRINCIPAL SERVIDOR ZABBIX------ '        '"#" 
+echo -e '               '"#"'                                                             '"#" 
+echo -e '               '"#""\t"'   ' 1. Instalacion inicial del servidor'              '"#" 
+echo -e '               '"#""\t"'   ' 2. Crear usuarios necesarios '                    '"#" 
+echo -e '               '"#""\t"'   ' 3. Instalacion servidor Zabbix'                   '"#" 
+echo -e '               '"#""\t"'   ' 4. Configuracion backups servidores '             '"#" 
+echo -e '               '"#""\t"'   ' 5. Salir'                                         '"#"
+echo -e '               '"#"'                                                             '"#" 
+echo -e '               '"###############################################################"
+read -p '                         |' opcion
+
+
+case $opcion in
+     1)
+       bash /backupsscripts/servidormonitoreo/confservidorMonitoreo.sh 
+       menuprincipal 
+     ;;
+     2)
+       bash /backupsscripts/servidormonitoreo/confusuario.sh 
+       menuprincipal
+     ;;
+     3)
+       bash /backupsscripts/servidormonitoreo/installserverZabbix.sh
+       bash /backupsscripts/servidormonitoreo/importarbasedatos.sh 
+       menuprincipal
+     ;;
+     4)
+       bash /backupsscripts/servidormonitoreo/confbackup.sh 
+       menuprincipal
+     ;;
+     5)
+      bash /backupsscripts/menu.sh 
+     ;;		
+esac  
+}
+
+menuprincipal
+
+
